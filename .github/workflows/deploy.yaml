@@ -47,6 +47,9 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Setup pack
+        uses: buildpacks/github-actions/setup-pack@v5.0.0
+
       - name: Create Container
         run: |
           pack build --builder=gcr.io/buildpacks/builder --publish gcr.io/${{ steps.auth.outputs.project_id }}/${{ github.event.repository.name }}:${{ github.sha }}
