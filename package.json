@@ -1,0 +1,29 @@
+{
+  "name": "semver-as-a-service",
+  "version": "0.0.1",
+  "description": "SemVer as a Service",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node node_modules/nodemon/bin/nodemon.js app.js",
+    "test": "mocha -R spec --exit test.js",
+    "ncu": "node node_modules/npm-check-updates/build/src/bin/cli.js -u"
+  },
+  "dependencies": {
+    "semver": "7.6.0",
+    "express": "4.18.2"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "nodemon": "latest",
+    "npm-check-updates": "latest",
+    "supertest": "latest"
+  },
+  "engines": {
+    "node": "20.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesward/semver-as-a-service"
+  },
+  "license": "MIT"
+}
