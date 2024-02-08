@@ -52,6 +52,7 @@ jobs:
 
       - name: Create Container
         run: |
+          gcloud auth configure-docker --quiet gcr.io
           pack build --builder=gcr.io/buildpacks/builder --publish gcr.io/${{ steps.auth.outputs.project_id }}/${{ github.event.repository.name }}:${{ github.sha }}
 
       - name: Deploy Service
