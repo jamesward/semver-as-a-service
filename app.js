@@ -5,10 +5,20 @@ const app = express()
 
 app.set('port', (process.env.PORT || 5000))
 
-app.get('/validRange/:s', (req, res) => {
-  const validRange = semver.validRange(req.params["s"])
+app.get('/validRange', (req, res) => {
+  const validRange = semver.validRange(req.query["range"])
   if (validRange != null) {
     res.send(validRange)
+  }
+  else {
+    res.status(400).send()
+  }
+});
+
+app.get('/maxSatisfying', (req, res) => {
+  const maxSatisfying = semver.maxSatisfying(req.query["v"], req.query["range"])
+  if (maxSatisfying != null) {
+    res.send(maxSatisfying)
   }
   else {
     res.status(400).send()
