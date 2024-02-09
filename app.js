@@ -15,10 +15,26 @@ app.get('/validRange', (req, res) => {
   }
 });
 
+function stringOrArrayToArray(thing) {
+  if (typeof thing == "string") {
+    return [thing]
+  } else if (thing instanceof Array) {
+    return thing
+  }
+  else {
+    return null
+  }
+}
+
 app.get('/maxSatisfying', (req, res) => {
-  const maxSatisfying = semver.maxSatisfying(req.query["v"], req.query["range"])
-  if (maxSatisfying != null) {
-    res.send(maxSatisfying)
+  const versions = stringOrArrayToArray(req.query["v"])
+  if (versions != null) {
+    const maxSatisfying = semver.maxSatisfying(versions, req.query["range"])
+    if (maxSatisfying != null) {
+      res.send(maxSatisfying)
+    } else {
+      res.status(400).send()
+    }
   }
   else {
     res.status(400).send()

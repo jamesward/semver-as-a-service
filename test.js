@@ -24,4 +24,11 @@ describe('app', function() {
         .expect("1.0.2")
         .end(done);
   });
+  it('/maxSatisfying?v=1.0.0&range=>=1.0.0 <2.0.0-0', function(done) {
+    request(app)
+        .get('/maxSatisfying?v=1.0.0&range=>=1.0.0 <2.0.0-0')
+        .expect(200)
+        .expect("1.0.0")
+        .end(done);
+  });
 });
