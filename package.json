@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "semver": "7.7.2",
-    "express": "5.1.0"
+    "express": "5.2.1"
   },
   "devDependencies": {
     "mocha": "latest",
