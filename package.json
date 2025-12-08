@@ -9,7 +9,7 @@
     "ncu": "node node_modules/npm-check-updates/build/src/bin/cli.js -u"
   },
   "dependencies": {
-    "semver": "7.7.2",
+    "semver": "7.7.3",
     "express": "5.2.1"
   },
   "devDependencies": {
