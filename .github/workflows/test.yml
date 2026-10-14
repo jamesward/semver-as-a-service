@@ -2,22 +2,26 @@ name: Test
 
 on:
   push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v5
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Smoke test
+        run: |
+          PORT=5911 npm start &
+          for i in $(seq 1 20); do curl -fsS 'http://localhost:5911/validRange?range=1' && exit 0; sleep 1; done
+          exit 1
