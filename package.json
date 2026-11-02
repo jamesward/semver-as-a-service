@@ -6,10 +6,10 @@
     "start": "node app.js",
     "dev": "node node_modules/nodemon/bin/nodemon.js app.js",
     "test": "mocha -R spec --exit test.js",
-    "ncu": "node node_modules/npm-check-updates/build/src/bin/cli.js -u"
+    "ncu": "node node_modules/npm-check-updates/build/cli.js -u"
   },
   "dependencies": {
-    "semver": "7.8.5",
+    "semver": "7.8.6",
     "express": "5.3.0"
   },
   "devDependencies": {
